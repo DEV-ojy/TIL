@@ -1,4 +1,3 @@
-# Chapter 1 : RNN and CNN
 
 ## RNN(Recurrent Neual Network) - 순환신경망  
 
