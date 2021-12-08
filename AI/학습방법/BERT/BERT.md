@@ -9,7 +9,7 @@ bert이전에 이러한 접근 방법을 가지는 모델이 있었는데 **대�
 BERT는 특정 task를 처리하기 위해 새로운 network를 붙일 필요가 없습니다
 모델 자체의 fine-tuning(미조정)을 통해 해당 task의 state-of-the-art(최신)를 달성하게 됩니다 
 
-## Introduction
+# Introduction
 bert는 기본적으로 두가지 pre-training 방법을 가지고 있다 하나는 ``Masked Language Model(MLM)``이고 다른하나는 `Next Sentence Prdiction(NSP)`이다 
 
 기존의 방법론은 앞의 n개의 단어를 가지고 뒤의 단어를 예측하는 벙법이다 하지만 이는 필연적으로 
@@ -19,7 +19,7 @@ MLM은 input에서 무작위하게 몇개의 token을 mask시킨다음 이를 tr
 
 * Next Sentence Prediction : 간단하게 두 문장을 pre-training시에 같이 넣어서 두문장이 이어지는 문장인지 아닌지를 맞추는 것이다
 
-## bert
+# bert
 ```
 BERT의 아키텍처는 Attention is all you need에서 소개된 Transformer를 사용하지만, 
 pre-training(사전훈련)과 fine-tuning(미세조정)시의 아키텍처를 조금 다르게 하여 
@@ -39,7 +39,7 @@ feed-forward/filter size = 4H
 Open AI GPT 모델의 경우 next token만을 맞추어내는 긱본적인 언어모델방식을 사용하기 위해 transformer decoder를 사용합니다
 하지만 bert는 MLM과 NSP를 위해 self-attention을 수행하는 transformer encoder 구조를 사용합니다 
 
-## bert의 Input Representation
+# bert의 Input Representation
 
 ![image](https://user-images.githubusercontent.com/80239748/133095830-ef00eb75-6705-4b7c-b03b-500ecd40794c.png)
 
@@ -55,7 +55,7 @@ Sentence pair은 합쳐져서 single sequence로 입력되게 됩니다 각각�
 sentence A embedding, 뒤의 문장에는 sentence B embedding을 더 해줍니다 
 만약 문장이 하나만 들어간다면 sentence A embedding만 해줍니다 
 
-## MLM의 작동원리 
+# MLM의 작동원리 
 
 ![image](https://user-images.githubusercontent.com/80239748/133097974-63af14e8-47c1-47df-9af7-5dfedda0f2b1.png)
 
@@ -67,7 +67,7 @@ bert는 문맥을 파악하는 능력을 길러냅니다
 
 또한 MLM은 보통의 LM보단 converge 하는데에 많은 training step이 필요하지만 emperical하게는 LM보다 훨씬 빠르게 좋은 성능을 냅니다
 
-## Next Sentence prediction
+# NSP (Next Sentence prediction)
 
 pre-training task 수행하는 이유는 여러 중요한 NLP task중에 QA나 Natural Language Inference(NLI)와 같이 
 두 문장 사이의 관계를 이해하는 것이 중요한 것들이기 때문에 이들은 언어 모델에서 capture되지 않습니다
@@ -78,7 +78,7 @@ pre-training task 수행하는 이유는 여러 중요한 NLP task중에 QA나 N
 pre-training이 완료되면 이 과제는 97~98%의 accuracy(정확도)를 달성하게 됩니다 
 간단한 task를 부여해도 QA와 NLI에 굉장히 의미있는 성능 향샹을 이룹니다 
 
-## pre-training Procedure
+# pre-training Procedure
 
 pre-training의 기본적인 절차는 LM에서 수행하는 것과 같습니다 
 
@@ -89,15 +89,12 @@ pre-training의 기본적인 절차는 LM에서 수행하는 것과 같습니다
     이후에 Masking 작업을 해줌
     
 
-## Fine-tuning Procedure
+# Fine-tuning Procedure
 
-- sequence-level classification tasks(순서 수준 분류 작업)에 대해서는 BERT fine-tuning과정이 매우straightforward(직설적인)
+- sequence-level classification tasks(순서 수준 분류 작업)에 대해서는 BERT fine-tuning과정이 매우straightforward(직설적인) input sequence에 대해서는 representation(대표)결과를 얻고 싶기 때문에 CLS token의 Transformer output값을 사용합니다 
 
-    input sequence에 대해서는 representation(대표)결과를 얻고 싶기 때문에 CLS token의   Transformer output값을 사용합니다 
-
-    CLS token의 벡터는 H 차원을 가집니다 
-
-    여기서 classify하고 싶은 갯수(K)에 따라 classification layer를 붙여줍니다
+- CLS token의 벡터는 H 차원을 가집니다 
+여기서 classify하고 싶은 갯수(K)에 따라 classification layer를 붙여줍니다
 
 - span-level, token-level prediction tasks(범위 수준, 토큰 수준 예측 작업)의 경우에는 위의 과정에서 약간 변형시켜 fine-tuning이 진행합니다
 
@@ -113,14 +110,14 @@ pre-training의 기본적인 절차는 LM에서 수행하는 것과 같습니다
 - **Fine-tuning**은 굉장히 빠르게 학습되며(pre-training에 비해) 이로 인해 최적의 hyperparameter 탐색을 exhaustive search로 찾아내도 무방합니다
 
 
-## Comparison of BERT and OpenAI GPT
+# Comparison of BERT and OpenAI GPT
 
 OpenAI GPT와 BERT는 transformer구조를 사용한다는 점에 있어서 공통점을 갖지만 BERT가 훨씬 좋은 성능을 가진다 
 이차이는 앞에 설명한 MLM task,NSP task를 수행하는 것과 별개로 또 더 다른점을 갖기에 생깁니다
 
  **GPT**의 경우 **BookCorpus(800M words)** 만을 pre-training에 사용 **BERT**는 거기에 + **Wikipedia(2500M words)** 사용
  **GPT**는 `[SEP]`과 `[CLS]` token을 fine-tuning시에만 추가하여 학습; **BERT**는 pre-training시에도 학습 **(NSP task가 존재하기 때문에 가능)**
- **GPT** : 32,000 words/batch for 1M steps ; **BERT** : 128,000 words/batch ofr 1M steps
- **GPT**는 모든 fine-tuning을 수행할 때 learning rate : 5e-5를 사용; **BERT**는 **task-specific**하게 조절하여 사용
+ **GPT** : 32,000 words/batch for 1M steps  **BERT** : 128,000 words/batch ofr 1M steps
+ **GPT**는 모든 fine-tuning을 수행할 때 learning rate : 5e-5를 사용 **BERT**는 **task-specific**하게 조절하여 사용
 
     위에 나열한 차이점에서 대한 효과는 ablation experiments(절제 실험)이 수행합니다
