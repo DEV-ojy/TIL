@@ -39,15 +39,35 @@ YOLO 버전 1 모델은 **입력 이미지를 7 x 7 그리드로 나누고 나�
 
 이런 점을 보안하고자 나온 것이 YOLO Version 2 입니다
 
+# YOLO - Version 2
 
+1. 입력 이미지가 아닌 Feature Map에서 13 x 13 그리드로 나누고 각 Cell 마다 Object Detection을 수행
+2. 각 Cell 당 씌우는 Anchor Box 개수를 5개로 늘리기
+3. 동일한 이미지 이지만 크기만 다르게 해서 모델을 학습(Multi-Scaling)
+4. 모델에 Batch Normalization 적용
+5. 분류 모델을 Fine Tuning
+6. Darknet-19 라는 개별의 Feature Extractor 사용
 
+Version2 에서 주목해야 할 특징은 1,2번입니다 나머지 특징들은 읽기만 해도 이해가 될 것 입니다 우선 기본적인 YOLO 버전 2의 아키텍처를 살펴봅시다
 
+![image](https://user-images.githubusercontent.com/80239748/145386461-aab02264-e8d6-4e09-a846-6fe9c50ad537.png)
 
+(YOLO Version 2 모델 아키텍쳐)
 
+버전 1모델과 두드러진 차이점은 `FC Layer가 없어졌다는 점` 이다 그리고 입력 데이터가 아닌 `Feature Map에서 13 x 13 그리드로 나누고 각 Cell 마다 Object Detection을 수행한다는 점`이다
 
+![image](https://user-images.githubusercontent.com/80239748/145386795-8322c255-3dfb-425e-b84e-e772c8174373.png)
 
+(YOLO Version 2의 큰 아키텍처)
 
+위 그림을 보다시피 전개되는 과정은 버전 1 모델과 유사하다 ` Feature Map에 그리드를 나눈다는 점과 각 그리드 Cell 마다 Anchor Box를 2개가 아닌 5개를 씌워준다는 점`이 다르나 그런데 여기서 Anchor Box를 5개 씌워줄 때 서로 다른 크기의 박스들을 씌워준다고 했습니다 
 
+그러면 서로 다른 적절한 크기를 어떻게 설정해줄까요?
 
+`5개의 서로 다른 Anchor Box의 사이즈 기준은 입력되는 이미지 데이터의 Ground Truth의 Bouding Box를 분석해 비슷한 부분끼리 그룹핑되도록 K-means Clustering을 사용`하게 됩니다
 
+![image](https://user-images.githubusercontent.com/80239748/145387339-bb94bff1-ca59-46af-941a-55818440a5bd.png)
 
+(K-means를 활용해 서로 다른 사이즈의 Anchor Box 설정하기)
+
+결과적으로 하나의 그리드 Cell에 대해 125개의 벡터가 존재하게 됩니다 하나의 Anchor Box당 25개의 벡터가 존재하고 Anchor Box가 5개가 있어 25∗5인 125가 됩니다
