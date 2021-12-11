@@ -114,3 +114,26 @@ YOLO 버전 3 모델은 이 Multi-Scale Feature Layer를 그리드에 적용해�
 
 YOLO 버전 3 모델은 위의 Multi-Scale Feature Layer 기법을 사용해 그리드 사이즈가 작을 때는 Anchor Box 크기가 커지므로 상대적으로 큰 객체를, 그리드 사이즈가 클 때는 Anchor Box 크기가 작아지므로 상대적으로 작은 객체를 잘 탐지하도록 하기 위해 구현되었습니다
 
+## 3-2. 독립적인 여러개의 Sigmoid로 Multi-label Classification 해결
+
+    해당 내용을 이해하기 전에 Multi-label Classification과 Multi-class Classification의 차이점을 이해해야 합니다
+
+* Multi-label Classification : 동시에 여러개의 레이블을 가질 수 있다. 예를 들어 '남자(레이블1), 사람(레이블2)' 를 동시에 가질 수 있습니다 
+
+* Multi-class Classification : 무조건적으로 하나의 레이블만 가질 수 있다. 예를 들어 '남자(레이블1)' 또는 '사람(레이블2)' 둘 중 하나만 가질 수 있습니다
+
+그동안의 Object Detection 모델은 객체의 최종 클래스 분류를 위해 모든 클래스의 확률 값을 더하면 무조건 1이 되는 Softmax Layer를 사용했습니다
+
+즉, Multi-class Classification 문제만을 해결했습니다
+하지만 `YOLO 버전 3 모델`은 최종 클래스를 분류할 때 Softmax Layer가 아닌 `각 클래스 마다 Sigmoid(=Logisitc 함수) Layer를 사용해 Multi-label Classification을 해결`할 수 있게했습니다 
+
+예를 하나만 들어보자. '남자'라는 객체가 들어있는 이미지가 YOLO 버전 3 모델로 입력되었습니다
+그리고 주어진 클래스 종류는 [사람, 남자, 강아지]라고 해볼때 Softmax Layer를 사용하게 되면 각 클래스에 대한 확률 Score가 대략 [0.3, 0.6, 0.1]가 될 것입니다 
+
+즉, 세 값의 총 합은 1이 된다. 그렇기 때문에 예측 모델은 가장 Score가 높은 0.6인 '남자'로만 예측할 것입니다 
+
+하지만 여기서 `각 클래스 마다 독립적인 Sigmoid Layer를 사용`하게 되면 Score는 [0.8, 0.8, 0.2] 정도가 될 것이고 결국 Score의 값 하나씩 분류 결정 임곗값(여기서 0.5라고 합시다)과 비교해서 크면 1, 작으면 0으로 분류하게 됨에 따라 Multi-label로 예측하게 될것입니다 
+
+다시 말해 입력된 이미지는 '사람' 이면서 '남자' 인 2개의 레이블을 갖도록 예측하게 되는 것이죠
+
+##### 2021.12.11
