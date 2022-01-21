@@ -36,3 +36,17 @@ LM(Language Model)은 corpus중 "He loves her"와 같은 표현이 많을수록 
 그렇다면 "He loves him"은 어떨까? 분명 실세계에서는 충분히 나올 수 있는 문장이다 그러나 corpus에 이러한 문장이 없다면 확률은 0이 되어 [P(W)=0] "him"을 절대로 예측할 수 없을 것이다 
 
 이러한 문제점을 해결하기 위해 일반화가 반드시 필요하다 일반화가 될 수 있도록 하는 방법 중 **N-gram**을 먼저 살펴보자 
+
+### N-grams
+
+N-grams은 corpus에 존재하지 않는 문장을 count하기 위해 마르코프 가정을 사용한다 
+
+가령 "A good boy" 다음 "is"가 나올 확률을 그냥 "boy"다음 "is"가 나올 확률로 가정하는 것이다
+즉, 단어 등장 확률을 구하기 위해 기준 단어의 앞 단어를 전부 포함하는 것이 아닌 앞 단어 중 임의의 N개만 포함하여 세는 것이 N-grams이다 하지만 P(W)=0인 상황을 완전히 피할 수는 없다
+
+따라서 이를 해결하기 위한 기법으로  `smoothing`이 있다 
+이 기법은 추후에 나올 Naive Bayes(나이브 베이즈) 알고리즘에서도 주로 쓰인다 수식은 다음과 같다
+
+![image](https://user-images.githubusercontent.com/80239748/150542519-8c5e1420-e440-44fa-93af-1b41ec6df6ac.png)
+
+여기서 alpha가 1이면 Laplace smoothing이다
