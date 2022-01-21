@@ -26,3 +26,13 @@ m개의 단어가 주어질 때, m개의 단어 시퀀스가 나타날 확률은
 * Summarization : 긴 text에서 짧은 text로 변환
 * Dialogue system : 사용자의 입력(그리고 knowledge base)에서 text response로 변환
 
+[한계]
+실제로 문장의 확률을 계산하기 위해서는 엄청난 양의 Corpus(말뭉치)가 필요할 것이다 
+가령 "He loves"라는 문장 뒤 어떤 단어가 올지 LM의 기본 개념을 통해 확률을 구한다고 하면 확률 P는 다음과 같다 
+
+![image](https://user-images.githubusercontent.com/80239748/150526420-cb837eec-e928-4f1a-8e3a-d90f5313fd44.png)
+
+LM(Language Model)은 corpus중 "He loves her"와 같은 표현이 많을수록 확률을 높게 계산할 것이다
+그렇다면 "He loves him"은 어떨까? 분명 실세계에서는 충분히 나올 수 있는 문장이다 그러나 corpus에 이러한 문장이 없다면 확률은 0이 되어 [P(W)=0] "him"을 절대로 예측할 수 없을 것이다 
+
+이러한 문제점을 해결하기 위해 일반화가 반드시 필요하다 일반화가 될 수 있도록 하는 방법 중 **N-gram**을 먼저 살펴보자 
