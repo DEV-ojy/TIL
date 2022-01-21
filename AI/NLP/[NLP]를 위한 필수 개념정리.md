@@ -17,3 +17,12 @@ m개의 단어가 주어질 때, m개의 단어 시퀀스가 나타날 확률은
 ![image](https://user-images.githubusercontent.com/80239748/150287454-3e1e9fd3-2d61-4ee8-b6fe-52e5f9ff9019.png)
 
 이러한 확률 분포는 학습 데이터의 성격에 따라 매번 다르게 계산될 것이다 왜냐하면 학습 데이터의 성격이 다르면 사용되는 단어의 분포가 다르기 때문이다 
+
+[사용]
+언어 모델은 확률 분초에 따라 시퀀스를 추출하기에 용이하다 따라서 다음과 같은 용도로 많이 사용된다 
+
+* Machine translation(기계 번역) : Source 언어의 text에서 target 언어의 text로 변환
+* Speech recognition : 오디오 신호에서 text로 변환
+* Summarization : 긴 text에서 짧은 text로 변환
+* Dialogue system : 사용자의 입력(그리고 knowledge base)에서 text response로 변환
+
