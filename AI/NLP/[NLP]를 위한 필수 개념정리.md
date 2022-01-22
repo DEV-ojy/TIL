@@ -50,3 +50,9 @@ N-grams은 corpus에 존재하지 않는 문장을 count하기 위해 마르코�
 ![image](https://user-images.githubusercontent.com/80239748/150542519-8c5e1420-e440-44fa-93af-1b41ec6df6ac.png)
 
 여기서 alpha가 1이면 Laplace smoothing이다
+
+## Representation
+
+NLP 관련 논문을 읽으면 빠짐 없이 아오는 용어로 실제 텍스트를 LM이 연산할 수 있도록 만든 형태라고 보면 된다 Representation은 크게 카운트 기반으로 나타내는 것과 그렇지 않은 것으로 나눌 수 있다 
+
+
