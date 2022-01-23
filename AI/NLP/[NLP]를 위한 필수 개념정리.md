@@ -79,3 +79,22 @@ NLP 관련 논문을 읽으면 빠짐 없이 아오는 용어로 실제 텍스�
 [한계]
 엄청나게 많은 종류의 단어를 one-hot 벡터로 만든다고 하면 엄청난 크기의 행렬이 필요할 것이다 
 또한 sparse 행렬이므로 많은 메모리가 낭비된다 그렇기 때문에 다차원 공간에 단어의 의미를 벡터화하는 여러 기법들이 존재한다 
+
+## Bag of Words (Bow)
+
+**단어들의 순서는 전혀 고려하지 않고** 단어들의 **출현 빈도(frequency)에만 집중**하는 텍스트 데이터의 수치화 표현 방법이다 주로 문서 분류에서 사용된다 다음 세 개의 텍스트를 BoW 기반으로 표현해보자 
+
+* doc1: "I learn NLP"
+* doc2: "NLP is Natural Language Processing"
+* doc3: "Learning NLP is not easy"
+
+1. Tokenization(토큰화)
+
+* doc1: [ "I", "learn", "NLP" ]
+* doc2: [ "NLP", "is", "Natural", "Language", "Processing" ]
+* doc3: ["Learn", "##ing", "NLP", "is", "not", "easy" ]
+
+2. 각 단어의 빈도 수 계산
+
+예시에서는 각 문서에 중복된 단어가 없기 때문에 모두 1인 벡터가 될 것이다 하지만 각 문서 간 연관성을 계산하기 위해 모든 문서에 있는 단어들에 대한 행렬을 새로 만들 수 있다 
+
