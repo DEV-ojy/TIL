@@ -51,3 +51,15 @@ neural language model(2003), 이때 C(i)가 단어의 벡터이다
 이때 max-pooling을 주로 사용하는 것을 알수있는데 이렇게 사용하는 것이 결과가 좋았다고 합니다이미지 러닝에서는 주로 avgpooling을 사용하는데 이는 이미지와 자연어의 차이때문에 아닐까싶습니다 자연어에서는 가장 높은 값을 가지는 value가 그 추상성을 대표하는 값이 된다고 합니다 
 
 아마 이미지에서는 모든 값들을 대표할 수 있는 값을 담는것이 그 이미지를 대표하는 대표적인 값이라서 그런것이 아닐까 생각합니다 
+
+### 3.RNN
+
+RNN은 recurrent neutral network의 줄임말로써 연속적으로 들어오는 정보의 나열을 학습하기 위한 네트워크 구조로 주로 사용됩니다 ex.차례대로 들어오는 음성이나 문장 
+
+RNN의 경우 아웃풋의 크기를 지정해줘야 하는 CNN에 비해 output을 연속적으로 출력하는 것이 가능하므로 RNN은 크기가 정해지지 않은 출력을 얻는데 적합합니다 
+
+![image](https://user-images.githubusercontent.com/80239748/153714575-b94572ce-eb3e-4768-9454-2fbe1743338f.png)
+
+time step으로 들어오는 input에 따라 output을 만들고 그전에서 얻은 hidden state를 그다음 RNN layer의 인풋으로 사용해서 그전에 들어온 문장의 숨은 특성을 네트워크가 학습시키게 할 수 있습니다 
+
+기본적인 RNN보다 LSTM이나 GRU를 사앙해서 state의 forget circuit를 구현하게 될 경우 그 성능이 더 높은 것으로 알려져 있습니다 
