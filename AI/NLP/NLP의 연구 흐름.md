@@ -63,3 +63,16 @@ RNN의 경우 아웃풋의 크기를 지정해줘야 하는 CNN에 비해 output
 time step으로 들어오는 input에 따라 output을 만들고 그전에서 얻은 hidden state를 그다음 RNN layer의 인풋으로 사용해서 그전에 들어온 문장의 숨은 특성을 네트워크가 학습시키게 할 수 있습니다 
 
 기본적인 RNN보다 LSTM이나 GRU를 사앙해서 state의 forget circuit를 구현하게 될 경우 그 성능이 더 높은 것으로 알려져 있습니다 
+
+### 4.Attention
+
+말 그래도 단어중 어느 단어에 더 비중을 높게 실을 것인가에 대한 attention을 의미합니다
+
+문서 요약같은 task의 경우 관련되지 않은 정보까지 encoding 하는 것보다 자신이 원하는 정보에만 attention을 주고 결과를 얻는 것이 더 연산적으로, 결과적으로 효율적입니다 
+이를 위해서 마지막 layer딴에서 input sequence를 한번 더 읽어 와서 input sequence에 와의 연관성을 얻을 수 있습니다 
+
+![image](https://user-images.githubusercontent.com/80239748/153757144-ed035218-519a-408b-af30-af778fe73c3c.png)
+
+다음 처럼 결과를 바탕으로 단어들 사이의 실제 연관성과 가중치를 파악할 수 있다는 점에서 실질적인 결과를 얻을 수 있다는 점에서 많이 연구되고 있고 사용되는 분야라고 합니다 
+
+이전까지는 CNN과 attention을 사용한 네트워크가 대세였다고 합니다 최근들어 구글이 attention all you need라는 논문에서 attention과 FNN만으로 구성된 네트워크인 transformer를 바탕으로 RNN을 사용한 것보다 좋고 빠른 결과를 얻을 수 있다서 해서 최근에 많이 연구되고 있다고 합니다 
