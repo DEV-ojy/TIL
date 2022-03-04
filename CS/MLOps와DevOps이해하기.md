@@ -21,3 +21,22 @@ ML 모델 서빙 파이프라인 전반에 걸쳐 Scientist와 Engineer의 협�
 
 ![image](https://user-images.githubusercontent.com/80239748/153714512-9849ba3f-b6b7-4565-b189-d5cdb0165a40.png)
 
+### DevOps 와 MLOps에서 CI/CD/CT
+
+DevOps 와 MLOps에서 CI/CD, 그리고 CT의 개념은 조금 다르게 설명이 됩니다 
+지향하는 목표는 대체로 유사하지만 그 방법과 특성에서 조금 차이가 있습니다 
+
+#### CI/CD/CT in DevOps 
+
+DevOps에서 일반적으로 말하는 CI/CD와 CT는 다음과 같습니다 
+
+##### [1] CI: Continuous Integration(지속적 통합)
+
+DevOps에서 CI는 소프트웨어의 새로운 변경 사항에 대해 Build 및 Test를 거쳐 Shared Repository에 통합하는 프로세스를 지속적으로 실시하는 것을 의미합니다 
+
+다수의 개발자가 Git,Bitbucket 등 형상관리 툴을 공유하여 사용하면서 다수의 개인이 commit을 시도하는 환경이나 Agile 방법론의 톡성에 따라 기능의 수정 및 추가가 비번하게 시도되는 MSA환경에서는 소스코드의 충동 문제가 빈번하게 발생합니다 
+
+이러한 **문제를 빠르게 해결하고,새로운 업데이트의 검증과 릴리즈 시간을 단축하여 소프트웨어 품질을 향상하는 것을 목표**로 합니다 
+
+##### [2] CD:Continuous Delivery/Deployment(지속적 제공/배포)
+
