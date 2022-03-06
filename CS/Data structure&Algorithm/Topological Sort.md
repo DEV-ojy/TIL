@@ -15,3 +15,13 @@
 ![image](https://user-images.githubusercontent.com/80239748/156882738-257ac76b-e871-42af-a0d6-c796f087ae5d.png)
 
 `Topological Sort`의 계산복잡도는 깊이우선탐색에 비례합니다 따라서 O(|V|+|E|)가 됩니다 
+
+### DAG최단거리 
+
+`Topological Sort` 와 edge relaxation 기법을 활용해 Directed Acyclic Graph(DAG)의 최단거리를 구할 수 있습니다 그 과정은 다음과 같습니다 
+
+* 주어진 DAG에 대해 Topological Sort를 수행합니다
+* 시작노드를 0, 나머지의 거리를 무한대로 초기화해줍니다
+* 각 노드별 모든 엣지에 대해 edge relaxation을 수행합니다 
+
+![image](https://user-images.githubusercontent.com/80239748/156922745-56eb3ab2-e147-4cc6-9bba-10874015dde1.png)
