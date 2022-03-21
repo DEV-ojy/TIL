@@ -22,4 +22,31 @@ Metric은 크게 **분류를 위한 평가지표**와 **회귀를 위한 평가�
 Accuracy - 정확도
 - TP + TN / (TP+FP+TN+FN) 전체중에 `True`의 개수
 
+Precision - 정밀도
+- TP / (TP + FP) 모델이 예측한 positive중에서 실제 Positive의 비율(**긍정 데이터 예측 성능에 초점을 맞춘 평가지표**)
+
+Recall - 재현율
+- TP / (TP + FN) 실제 Positive중 모델이 예측한 비율(**예측을 긍정으로 한 데이터 중 실제로 긍정인 비율**)
+
+------------------------
+
+`정밀도`와 `재현율`은 **트레이드오프 관계**를 갖습니다 정밀도는 *FP*을 재현율은 *FN*을 낮춤으로써 긍정 예측 성능을 높일 수 있습니다 
+
+이같은 특성 때문에 정밀도가 높아지면 재현율은 낮아지고 재현율이 높아지면 정밀도는 낮아지고
+가장 좋은 경우는 두 지표 다 적절히 높은 경우입니다 
+
+----------------------
+
+
+
+Fall -Out 
+- FP / (FP + TN) 실제로는 Negative인데 모델이 Positive로 오탐한 비율
+
+F1 Score 
+**정밀도와 재현율 한 쪽에 치우치지 않고 둘 다 균형을 이루는 것**
+
+- 무조건 Positive로 분류하면 Recall이 1이 되지만 Precision이 폭락하고 무조건 Negative로 분류하면 Precision은 1이 되지만 Recall이 0이 됩니다 
+- 이처럼 Precision이나 Recall은 단일 Metric으로 사용하기엔 모델의 일반화 성능을 나타낼 수 없다는 한계점이 존재합니다 그러기에 Precision과 Recall의 조화평균값인 F1 Score를 사용할 수 있습니다 
+
+![image](https://user-images.githubusercontent.com/80239748/159257049-5b091525-971e-4af8-968b-7984e5c2e742.png)
 
