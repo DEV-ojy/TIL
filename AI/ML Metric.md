@@ -50,3 +50,15 @@ F1 Score
 
 ![image](https://user-images.githubusercontent.com/80239748/159257049-5b091525-971e-4af8-968b-7984e5c2e742.png)
 
+### ROC-AUC
+
+![image](https://user-images.githubusercontent.com/80239748/159465916-500501ec-bba7-46ba-938b-ad58f1304d49.png)
+
+ROC는 **FPR(False Positive Rate)가 변할 때 TPR(True Positive Rate)가 어떻게 변하는지를 나타내는 곡선**을 말합니다 
+(여기서 FPR이란 FP / (FP + TN)이고, TPR은 TP / (FN + TP)으로 재현율을 말합니다)
+
+그럼 어떻게 FPR을 움직일까요?
+바로 분류 결정 임계값을 변경함으로써 움직일 수 있습니다 FPR이 0이 되려면 임계값을 1로 설정하면 됩니다 
+
+그럼 긍정의 기준이 높으니 모두 부정으로 예측될 것입니다 반대로 1이 되려면 임계값을 0으로 설정하여 모두 긍정으로 예측시키면 됩니다 
+이렇게 **임계값을 움직이면서 나오는 FPR과TPR을 각각 x와 y좌표로 두고 그린 곡선이 ROC**입니다
