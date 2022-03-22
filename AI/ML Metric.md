@@ -62,3 +62,21 @@ ROC는 **FPR(False Positive Rate)가 변할 때 TPR(True Positive Rate)가 어�
 
 그럼 긍정의 기준이 높으니 모두 부정으로 예측될 것입니다 반대로 1이 되려면 임계값을 0으로 설정하여 모두 긍정으로 예측시키면 됩니다 
 이렇게 **임계값을 움직이면서 나오는 FPR과TPR을 각각 x와 y좌표로 두고 그린 곡선이 ROC**입니다
+
+AUC는 ROC곡선의 넓이를 말한다 AUC가 높을수록 즉, AUC가 높을수록 즉, AUC가 왼쪽 위로 휘어질수록 좋은 성능이 나온다고 판단합니다 TPR이 높고 FPR이 낮을수록 예측 오류는 낮아지기 때문에 성능이 잘 나온다고 볼 수 있습니다 
+
+마지막으로 *회귀 작업*에 적용할 수 있는 평가지표를 살펴봅시다
+
+MAE(Mean Absolute Error)는 *예측값과 정답값 사이의 차이의 절대값의 평균*을 말합니다
+![image](https://user-images.githubusercontent.com/80239748/159469564-db3c471f-1955-403e-bdc7-a701290d8ca9.png)
+
+MSE(Mean Squared Error)는 *예측값과 정답값 사이의 차이의 제곱의 평균*을 말하며, MAE와 달리 제곱을 했기 때문에 **이상치에 민감**합니다
+![image](https://user-images.githubusercontent.com/80239748/159469802-04a67b3d-e299-4b76-af61-7b6f49464ab4.png)
+
+RMSE(Root Mean Squared Error)는 *MSE에 루트를 씌운 값*을 말합니다
+![image](https://user-images.githubusercontent.com/80239748/159469959-7ec35015-ff88-443d-8376-0dac12a38059.png)
+
+RMSLE(Root Mean Squared Logarithmic Error)는 RMSE와 비슷하나 *예측값과 정답값에 각각 로그를 씌워 계산*을 합니다
+![image](https://user-images.githubusercontent.com/80239748/159470175-ea90cecb-e5ea-4690-ad2f-d923f9414b08.png)
+
+R Squared는 *분산을 기반으로 예측 성능을 평가하는 지표*를 말합니다 정답값의 분산 대비 예측값의 분산 비율을 지표로 하며, 1에 가까울수록 정확도가 높습니다
